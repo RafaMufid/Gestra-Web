@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.nav {
+    height: 80px;
+    display: flex;
+    background-image: linear-gradient(90deg, #1E40AF, black);
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.nav .logo {
+    align-content: center;
+}
+
+.list_profile button {
+    width: 80px;
+    height: 30px;
+    font-size: 16px;
+    border-radius: 15px;
+    margin: 25px;
+    border: none;
+    background-color: white;
+    color: #1E40AF;
+
+    &:hover {
+        background-color: #1E40AF;
+        color: white;
+    }
+}
+
+.profile_title {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.profile_img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 2px solid #2f80ed;
+    overflow: hidden;
+    margin: 30px auto 30px auto;
+}
+
+.profile_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile_info {
+    display: flex;
+    flex-direction: column;
+    margin: 30px auto;
+    width: 300px;
+    gap: 10px;
+    justify-content: center;
+}
+
+.profile_info label {
+    font-weight: bold;
+}
+
+.profile_info input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.profile_info input:disabled {
+    background-color: white;
+}
+
+.btnedit {
+    margin-top: 15px;
+    padding: 8px;
+    border-width: 1px;
+    border-radius: 8px;
+    background-color: white;
+    color: #14279B;
+    cursor: pointer;
+}
+
+.btnlogout {
+    margin-top: 5px;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: #14279B;
+    color: white;
+    cursor: pointer;
+}
+
+.logout {
+    color: white;
+}
+
+.kontak {
+    background-image: linear-gradient(75deg, #1E40AF, white);
+    ;
+    padding: 20px 10%;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a {
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #facc15;
+}
