@@ -17,7 +17,7 @@ body {
     background-image: linear-gradient(90deg, #1E40AF, black);
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 0 20px; /* Menambahkan padding agar rapi */
+    padding: 0 20px;
 }
 
 .nav .logo {
@@ -40,9 +40,7 @@ body {
         color: white;
     }
 }
-/* nav end */
 
-/* --- Gaya Konten Halaman Gestur --- */
 .container {
     width: 100%;
     padding: 20px;
@@ -132,8 +130,9 @@ body {
 .btn_control.stop:hover {
     background-color: rgb(200, 0, 0);
 }
+/* Video end */
 
-/* Bagian Kanan: Hasil */
+/* Result */
 .result_display {
     flex-basis: 300px;
     flex-grow: 1;
