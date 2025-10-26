@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Gestra</title>
+  <link rel="stylesheet" href="style_login_regis.css">
+</head>
+<body class="auth-body">
+
+  <div class="auth-container">
+    <div class="auth-logo">
+      <img src="assets/gestra.png" alt="Logo Gestra">
+      <h2>Selamat Datang Kembali</h2>
+      <p>Masuk ke akun Gestra kamu</p>
+    </div>
+
+    <form class="auth-form" id="loginForm">
+      <label for="username">Nama</label>
+      <input type="text" id="username" placeholder="Masukkan nama" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Masukkan password" required>
+
+      <div class="auth-extra">
+        <a href="reset_password.html" class="forgot">Lupa password?</a>
+      </div>
+
+      <button type="submit" class="btn-primary">Login</button>
+
+      <p class="switch">Belum punya akun? <a href="register.html">Sign-Up</a></p>
+    </form>
+  </div>
+
+  <script src="script_login_regis.js"></script>
+</body>
+</html>
