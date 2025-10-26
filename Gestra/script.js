@@ -41,3 +41,7 @@ window.ontouchend = e => handleOnUp(e.touches[0]);
 window.onmousemove = e => handleOnMove(e);
 
 window.ontouchmove = e => handleOnMove(e.touches[0]);
+
+document.getElementById("tts-btn").addEventListener("click", function() {
+    window.location.href = "speechToText.html";
+});
