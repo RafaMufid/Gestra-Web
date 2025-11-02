@@ -42,3 +42,7 @@ function edit() {
     alert("Profil berhasil disimpan!");
   }
 }
+
+function logout() {
+  window.location.href = "login.html";
+}
