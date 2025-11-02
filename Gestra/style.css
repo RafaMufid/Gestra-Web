@@ -108,7 +108,7 @@ body{
     margin-top: 30px;
     gap: 30px;
 }
-.gesture, .tts, .forum{
+.gesture, .tts, .ttg, .forum{
     height: 250px;
     width: 500px;
     display: flex;
@@ -151,6 +151,23 @@ body{
         background-color: black;
     }
 }
+
+.ttg h2, img{
+    text-align: center;
+    align-self: center;
+}
+.ttg button{
+    margin-top: 10px;
+    height: 50px;
+    width: 200px;
+    border-radius: 50px;
+    color: white;
+    background-color: #1E40AF;
+    &:hover{
+        background-color: black;
+    }
+}
+
 .forum h2,img{
     text-align: center;
     align-self: center;
