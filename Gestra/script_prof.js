@@ -2,7 +2,7 @@ function dashboard() {
   window.location.href = "index.html";
 }
 
-function login() {
+function logout() {
   window.location.href = "login.html";
 }
 
