@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email', 200);
             $table->string('password');
             $table->string('user_type')->default('user');
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

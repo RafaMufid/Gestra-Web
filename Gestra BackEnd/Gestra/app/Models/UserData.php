@@ -17,6 +17,7 @@ class UserData extends Model
         'email',
         'password',
         'user_type',
+        'photo'
     ];
 
     protected $hidden = [
