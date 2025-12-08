@@ -2,6 +2,10 @@ function dashboard() {
   window.location.href = "index.html";
 }
 
+function logout() {
+  window.location.href = "login.html";
+}
+
 function edit() {
   const nama = document.getElementById("name");
   const username = document.getElementById("username");
@@ -37,4 +41,8 @@ function edit() {
 
     alert("Profil berhasil disimpan!");
   }
+}
+
+function logout() {
+  window.location.href = "login.html";
 }
