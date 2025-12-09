@@ -2,14 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Models\UserData;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+// Middleware sanctum untuk route yang butuh login
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/profile', [AuthController::class, 'profile']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    
+    // --- ROUTE BARU YANG WAJIB ADA ---
+    Route::get('/profile', [AuthController::class, 'getProfile']);
     Route::post('/profile', [AuthController::class, 'updateProfile']);
     Route::post('/profile/photo', [AuthController::class, 'updatePhoto']);
-    Route::post('/logout', [AuthController::class, 'logout']);
 });

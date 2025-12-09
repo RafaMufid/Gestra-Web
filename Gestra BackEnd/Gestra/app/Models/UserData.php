@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class UserData extends Model
+class UserData extends Authenticatable
 {
 
-    use HasApiTokens;
+    use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = 'user_data';
 
@@ -17,10 +19,11 @@ class UserData extends Model
         'email',
         'password',
         'user_type',
-        'photo'
+        'profile_photo_path'
     ];
 
     protected $hidden = [
         'password',
+        'remember_token',
     ];
 }
