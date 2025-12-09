@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestra - Deteksi Gerakan</title>
     <link rel="stylesheet" href="style-gestur.css">
 </head>
+
 <body>
     <div class="nav">
         <div class="logo">
@@ -21,8 +23,13 @@
         <div class="gestur_container">
             <div class="video_wrapper">
                 <div class="camera_feed" id="cameraFeed">
-                    <h3>Camera Tidak Aktif</h3>
-                    <p>Tekan "Mulai untuk mengaktifkan kamera"</p>
+                    <div id="cameraPlaceholder">
+                        <h3>Camera Tidak Aktif</h3>
+                        <p>Tekan "Mulai untuk mengaktifkan kamera"</p>
+                    </div>
+                    <video id="videoFeed" playsinline autoplay muted
+                        style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+                    </video>
                 </div>
                 <div class="controls">
                     <button id="startBtn" class="btn_control start">Mulai Deteksi</button>
@@ -52,4 +59,5 @@
 
     <script src="script_gestur.js"></script>
 </body>
+
 </html>

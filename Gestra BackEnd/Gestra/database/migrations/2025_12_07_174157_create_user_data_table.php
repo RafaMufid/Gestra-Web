@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email', 200);
             $table->string('password');
             $table->string('user_type')->default('user');
-            $table->string('photo')->nullable();
+            $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });
     }

@@ -6,29 +6,48 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const startButton = document.getElementById("startBtn");
     const stopButton = document.getElementById("stopBtn");
+    const cameraPlaceholder = document.getElementById("cameraPlaceholder");
+    const videoFeed = document.getElementById("videoFeed");
     const cameraFeed = document.getElementById("cameraFeed");
     const resultScreen = document.getElementById("resultScreen");
     
+    let localStream = null;
+
     // btnStart function
-    startButton.addEventListener("click", () => {
+    startButton.addEventListener("click", async () => {
         startButton.disabled = true;
         stopButton.disabled = false;
 
-        cameraFeed.innerHTML = "<h3>Kamera Aktif</h3><p>Mendeteksi gerakan...</p>";
-        cameraFeed.style.borderColor = "#28a745ff";
-
-        resultScreen.innerHTML = '<p>contoh hasil translate disini</p>';
+        try{
+            localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+            videoFeed.srcObject = localStream;
+            videoFeed.style.display = "block";
+            cameraPlaceholder.style.display = "none";
+            resultScreen.innerHTML = '<p>Kamera aktif. Mulai deteksi...</p>';
+        } catch (error) {
+            console.error("Error accessing camera: ", error);
+            resultScreen.innerHTML = '<p class="placeholder" style="color: red;">Gagal mengakses kamera. Silakan periksa izin kamera Anda.</p>';
+            
+            startButton.disabled = false;
+            stopButton.disabled = true;
+        }
     });
 
     // btnStop function
     stopButton.addEventListener("click", () => {
-        startButton.disabled = false;
+        if (localStream) {
+            localStream.getTracks().forEach(track => {
+                track.stop();
+            });
+        }
+        videoFeed.srcObject = null;
+        localStream = null;
+        videoFeed.style.display = "none";
+        cameraPlaceholder.style.display = "block";
+
         stopButton.disabled = true;
-
-        cameraFeed.innerHTML = "<h3>Kamera Tidak Aktif</h3><p>Tekan 'Mulai' untuk mengaktifkan kamera</p>";
-        cameraFeed.style.borderColor = "#1E40AF";
-
-        resultScreen.innerHTML = '<p class="placeholder">Deteksi dihentikan.</p>';
+        startButton.disabled = false;
+        resultScreen.innerHTML = '<p class="placeholder">Deteksi dihentikan.</p>'; 
     });
     stopButton.disabled = true;
 });
