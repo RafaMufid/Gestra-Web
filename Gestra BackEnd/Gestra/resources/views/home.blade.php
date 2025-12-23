@@ -61,6 +61,7 @@
             </div>
 
             <div class="ttg">
+                <img src="" alt="">
                 <h2>
                     Speech to gesture untuk mengubah ucapan menjadi gerakan isyarat <br>
                     <a href="#"><button>Coba</button></a>
