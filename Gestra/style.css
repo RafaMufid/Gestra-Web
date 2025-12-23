@@ -64,7 +64,7 @@ body{
 }
 
 .avatar{
-    width: 55px;        
+    width: 55px;
     height: 55px;
     border-radius: 50%;
     display: block;
@@ -235,19 +235,19 @@ body{
     align-items: center;
     gap: 10px;
   }
-  
+
   .social-links {
     display: flex;
     gap: 20px;
   }
-  
+
   .social-links a {
     color: black;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
   }
-  
+
   .social-links a:hover {
     color: #facc15;
   }
@@ -285,6 +285,19 @@ body{
     .intro h1 {
         font-size: 1.8rem;
     }
+}
+
+@keyframes slideRightToLeft {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.auto-slide {
+    animation: slideRightToLeft 10s linear infinite;
 }
 
 @media (max-width: 992px) {
