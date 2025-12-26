@@ -22,9 +22,15 @@
         </ul>
     </div>
     <div class="akun">
-        <button class="btn login">Login</button>
-        <button class="btn daftar">Sign-Up</button>
+        <a href="{{ route('login') }}">
+            <button class="btn login">Login</button>
+        </a>
+
+        <a href="{{ url('/register') }}">
+            <button class="btn daftar">Sign-Up</button>
+        </a>
     </div>
+
 </div>
 
 <div class="main">
@@ -97,6 +103,7 @@
             <div class="card">
                 <img class="image" src="{{ asset('assets/Member/Aulya.jpg') }}" draggable="false">
                 <h2>Shinta Alya Aulya Ningrum</h2>
+                 <h3>Motto : <br> "Kalau gagal, coba lagi kalau gagal lagi, salahin zodiak"</h3>
             </div>
 
             <div class="card">
