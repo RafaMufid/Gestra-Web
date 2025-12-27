@@ -19,6 +19,12 @@ Route::post('/login', [AuthWebController::class, 'login'])
 Route::get('/logout', [AuthWebController::class, 'logout'])
     ->name('logout');
 
+// SPEECH TO TEXT
+
+Route::get('/speech-to-text', function () {
+    return view('speech-to-text');
+})->name('stt');
+
 // HOME SETELAH LOGIN
 Route::get('/home-after-login', function () {
     return view('home_after_login');
