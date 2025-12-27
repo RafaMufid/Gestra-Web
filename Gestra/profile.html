@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <title>
+        profile
+    </title>
+    <link rel="stylesheet" href="style_prof.css">
+    <link rel="icon" href="assets/Logo atas/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="nav">
+        <div class="logo">
+            <img src="assets/gestra.png" alt="Gestra Logo">
+        </div>
+        <div class="list_profile">
+            <button onclick="dashboard()">Home</button>
+        </div>
+    </div>
+
+    <h1 class="profile_title">Profile</h1>
+
+    <div class="profile_img">
+        <img src="assets/Member/bella.jpg" alt="Profile Picture">
+        <div id="changePhotoOverlay" class="overlay" style="display: none;">
+            <span>Ubah Foto Profil</span>
+        </div>
+    </div>
+
+
+    <div class="profile_info">
+        <label>Nama:</label>
+        <input type="text" id="name" value="Bella" disabled>
+
+        <label>Username:</label>
+        <input type="text" id="username" value="bella123" disabled>
+
+        <label>Password:</label>
+        <input type="password" id="password" value="password123" disabled>
+
+        <button id="editbtn" class="btnedit" onclick="edit()">
+            Edit Profile
+        </button>
+
+        <button id="logoutbtn" class="btnlogout" onclick="logout()">
+            Logout
+        </button>
+    </div>
+
+    <div class="kontak">
+        <div class="footer-content">
+            <p>© 2025 Gestra. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+            </div>
+        </div>
+
+        <script src="script_prof.js"></script>
+</body>
+
+</html>

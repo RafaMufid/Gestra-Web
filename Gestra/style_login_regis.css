@@ -1,0 +1,125 @@
+.auth-body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom right, #ffeaa7, #ffffff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Container utama */
+.auth-container {
+  background-color: #ffffff;
+  border-radius: 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  padding: 45px 55px;
+  width: 420px;
+  text-align: center;
+}
+
+/* Logo dan heading */
+.auth-logo img {
+  width: 150px; 
+  margin-bottom: 20px;
+}
+
+.auth-logo h2 {
+  color: #001f54;
+  margin-bottom: 8px;
+}
+
+.auth-logo p {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+/* Form */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.auth-form label {
+  font-weight: 600;
+  color: #001f54;
+  margin-bottom: 5px;
+}
+
+.auth-form input {
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border: 2px solid #ccd5ff;
+  border-radius: 10px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.auth-form input:focus {
+  border-color: #001f54;
+}
+
+/* Tombol utama */
+.btn-primary {
+  background-color: #001f54;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #003e9c;
+}
+
+.auth-extra, .switch {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.auth-extra a, .switch a {
+  color: #001f54;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-extra a:hover, .switch a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .auth-container {
+    width: 90%;
+    padding: 30px;
+  }
+
+  .auth-logo img {
+    width: 150px;
+  }
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  color: #001f54;
+}
