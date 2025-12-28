@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\LearningHistory;
 
 class UserData extends Authenticatable
 {
@@ -26,4 +27,9 @@ class UserData extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function learningHistories()
+    {
+        return $this->hasMany(LearningHistory::class, 'user_id');
+    }
 }

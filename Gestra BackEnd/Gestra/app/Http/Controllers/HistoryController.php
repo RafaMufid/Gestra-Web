@@ -35,10 +35,35 @@ class HistoryController extends Controller
     // Fungsi tambahan: Melihat riwayat user (Opsional)
     public function index(Request $request)
     {
-        $history = LearningHistory::where('user_id', $request->user()->id)
-                    ->orderBy('created_at', 'desc')
-                    ->get();
+        $userId = $request->user()->id;
 
-        return response()->json($history);
+        $today = LearningHistory::where('user_id', $userId)
+        ->whereDate('created_at', now())
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        $previous = LearningHistory::where('user_id', $userId)
+            ->whereDate('created_at', '<', now())
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return response()->json([
+            'today' => $today,
+            'previous' => $previous,
+        ]);
     }
+
+    public function destroy(Request $request, $id)
+    {
+        $history = LearningHistory::where('id', $id)
+            ->where('user_id', $request->user()->id)
+            ->firstOrFail();
+
+        $history->delete();
+
+        return response()->json([
+            'message' => 'History deleted successfully'
+        ]);
+    }
+
 }

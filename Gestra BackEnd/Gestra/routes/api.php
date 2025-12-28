@@ -15,4 +15,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/profile/photo', [ProfileController::class, 'updatePhoto']);
     Route::post('/history', [HistoryController::class, 'store']);
     Route::get('/history', [HistoryController::class, 'index']);
+    Route::delete('/history/{id}', [HistoryController::class, 'destroy']);
 });

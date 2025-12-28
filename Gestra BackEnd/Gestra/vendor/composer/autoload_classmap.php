@@ -11,6 +11,7 @@ return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\HistoryController' => $baseDir . '/app/Http/Controllers/HistoryController.php',
     'App\\Http\\Controllers\\ProfileController' => $baseDir . '/app/Http/Controllers/ProfileController.php',
+    'App\\Http\\Controllers\\ProfileWebController' => $baseDir . '/app/Http/Controllers/ProfileWebController.php',
     'App\\Http\\Controllers\\UserDataController' => $baseDir . '/app/Http/Controllers/UserDataController.php',
     'App\\Middleware\\AuthUser' => $baseDir . '/app/Middleware/AuthUser.php',
     'App\\Models\\LearningHistory' => $baseDir . '/app/Models/LearningHistory.php',
