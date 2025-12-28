@@ -8,6 +8,12 @@ body {
     overflow-x: hidden;
 }
 
+.main {
+    display: flex;
+    justify-content: center;
+}
+
+
 .nav {
     height: 80px;
     display: flex;
@@ -29,12 +35,13 @@ body {
     border: none;
     background-color: white;
     color: #1E40AF;
-
-    &:hover {
-        background-color: #1E40AF;
-        color: white;
-    }
 }
+
+.list_profile button:hover {
+    background-color: #1E40AF;
+    color: white;
+}
+
 
 .profile_title {
     display: flex;
@@ -45,14 +52,37 @@ body {
 }
 
 .profile_img {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     border: 2px solid #2f80ed;
     overflow: hidden;
-    margin: 30px auto;
+    margin: 20px auto 5px ;
     position: relative;
 }
+
+.overlay.hidden {
+    display: none;
+}
+
+.password_field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.password_field.hidden {
+    display: none;
+}
+
+.btnedit .hidden {
+    display: none;
+}
+
+.hidden {
+    display: none ;
+}
+
 
 .profile_img img {
     width: 100%;
@@ -91,7 +121,7 @@ body {
 .profile_info {
     display: flex;
     flex-direction: column;
-    margin: 30px auto;
+    margin: 20px auto 10px;
     width: 300px;
     gap: 10px;
     justify-content: center;
@@ -164,4 +194,22 @@ body {
 
 .social-links a:hover {
     color: #facc15;
+}
+
+.profile_actions {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 300px;
+    margin-bottom: 40px;
+}
+
+.profile_actions button {
+    width: 100%;
+}
+
+.password_field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }

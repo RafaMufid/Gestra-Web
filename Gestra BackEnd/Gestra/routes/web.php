@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthWebController;
+use App\Http\Controllers\ProfileWebController;
 
 // HOME
 
@@ -34,3 +35,8 @@ Route::get('/register', function () {
 // Proses register
 Route::post('/register', [AuthWebController::class, 'register'])
     ->name('register.post');
+
+
+Route::get('/profile', [ProfileWebController::class, 'index'])->name('profile');
+Route::get('/profile/edit', [ProfileWebController::class, 'edit'])->name('profile.edit');
+Route::post('/profile/update', [ProfileWebController::class, 'update'])->name('profile.update');
