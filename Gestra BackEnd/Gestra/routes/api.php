@@ -18,4 +18,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/history', [HistoryController::class, 'index']);
     Route::get('/community-posts', [CommunityPostController::class, 'index']);
     Route::post('/community-posts', [CommunityPostController::class, 'store']);
+    Route::delete('/history/{id}', [HistoryController::class, 'destroy']);
 });

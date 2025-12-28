@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthWebController;
 use App\Http\Controllers\CommunityPostController;
-
+use App\Http\Controllers\ProfileWebController;
 // HOME
 
 Route::get('/', function () {
@@ -45,3 +45,7 @@ Route::get('/community/all', [CommunityPostController::class, 'allPosts'])->name
 Route::post('/community/{id}/like', [CommunityPostController::class, 'like'])->name('community.like');
 
 Route::post('/community/{id}/comment', [CommunityPostController::class, 'comment'])->name('community.comment');
+
+Route::get('/profile', [ProfileWebController::class, 'index'])->name('profile');
+Route::get('/profile/edit', [ProfileWebController::class, 'edit'])->name('profile.edit');
+Route::post('/profile/update', [ProfileWebController::class, 'update'])->name('profile.update');

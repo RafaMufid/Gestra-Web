@@ -25,7 +25,9 @@
         @php
             $user = session('user');
         @endphp
+        <a href="{{ route('profile') }}">
         <img class="avatar" src="{{ asset($user['profile_photo_path'] ?? 'assets/default.png') }}" alt="Profile">
+    </a>
     </div>
 </div>
 
