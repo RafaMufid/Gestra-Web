@@ -10,7 +10,7 @@ class AuthUser
     public function handle($request, Closure $next)
     {
         if (!Session::has('user')) {
-            return redirect('/');
+            return redirect('/login');   // BUKAN '/'
         }
 
         return $next($request);
