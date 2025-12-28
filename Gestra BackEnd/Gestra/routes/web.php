@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthWebController;
+use App\Http\Controllers\CommunityPostController;
 
 // HOME
 
@@ -34,3 +35,13 @@ Route::get('/register', function () {
 // Proses register
 Route::post('/register', [AuthWebController::class, 'register'])
     ->name('register.post');
+
+Route::get('/community', [CommunityPostController::class, 'index'])->name('community.index');
+
+Route::post('/community', [CommunityPostController::class, 'store'])->name('community.store');
+
+Route::get('/community/all', [CommunityPostController::class, 'allPosts'])->name('community.all');
+
+Route::post('/community/{id}/like', [CommunityPostController::class, 'like'])->name('community.like');
+
+Route::post('/community/{id}/comment', [CommunityPostController::class, 'comment'])->name('community.comment');

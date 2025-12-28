@@ -70,7 +70,7 @@
                 <img src="{{ asset('assets/Forum.png') }}" alt="">
                 <h2>
                     Forum diskusi untuk mencari komunitas dan mendapat info pertemuan <br>
-                    <a href="#"><button>Coba</button></a>
+                    <a href="{{ route('community.index') }}"><button>Coba</button></a>
                 </h2>
             </div>
         </div>
