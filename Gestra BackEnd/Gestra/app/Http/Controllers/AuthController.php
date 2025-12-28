@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\UserData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
@@ -26,16 +25,14 @@ class AuthController extends Controller
             'user_type' => $request->user_type,
         ]);
 
-        $token = $user->createToken('auth_token')->plainTextToken;
-
         return response()->json([
+            'success' => true,
             'message' => 'Register successful',
-            'token' => $token,
             'user' => $user
         ], 201);
     }
 
-    // LOGIN
+    // LOGIN 
     public function login(Request $request)
     {
         $request->validate([
@@ -46,22 +43,25 @@ class AuthController extends Controller
         $user = UserData::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
+            return response()->json([
+                'success' => false,
+                'message' => 'Email atau password salah'
+            ], 401);
         }
 
-        $token = $user->createToken('auth_token')->plainTextToken;
-
         return response()->json([
-            'message' => 'Login successful',
-            'token' => $token,
+            'success' => true,
+            'message' => 'Login berhasil',
             'user' => $user
         ]);
     }
 
-    // LOGOUT
+    // LOGOUT 
     public function logout(Request $request)
     {
-        $request->user()->tokens()->delete();
-        return response()->json(['message' => 'Logged out successfully']);
+        return response()->json([
+            'success' => true,
+            'message' => 'Logout berhasil'
+        ]);
     }
 }

@@ -62,15 +62,7 @@
                 <img src="{{ asset('assets/STT.png') }}" alt="">
                 <h2>
                     Speech to text untuk memudahkan komunikasi <br>
-                    <a href="#"><button>Coba</button></a>
-                </h2>
-            </div>
-
-            <div class="ttg">
-                <img src="" alt="">
-                <h2>
-                    Speech to gesture untuk mengubah ucapan menjadi gerakan isyarat <br>
-                    <a href="#"><button>Coba</button></a>
+                    <a href="{{ route('stt') }}"><button>Coba</button></a>
                 </h2>
             </div>
 

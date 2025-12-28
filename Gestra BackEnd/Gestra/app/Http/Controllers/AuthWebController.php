@@ -28,4 +28,31 @@ class AuthWebController extends Controller
         Session::forget('user');
         return redirect('/');
     }
+
+    public function register(Request $request)
+{
+    // Validasi input
+    $request->validate([
+        'username' => 'required|string|max:255',
+        'email' => 'required|email',
+        'password' => 'required|string|min:6',
+    ]);
+
+    // Kirim request ke API eksternal
+    $response = Http::post('http://localhost:3000/api/users/register', [
+        'username' => $request->username,
+        'email' => $request->email,
+        'password' => $request->password
+    ]);
+
+    if ($response->successful()) {
+        // Bisa langsung login otomatis atau redirect ke login page
+        return redirect('/login')->with('success', 'Akun berhasil dibuat, silakan login!');
+    }
+
+    // Jika gagal, kembali ke halaman register dengan error
+    $errorMessage = $response->json()['message'] ?? 'Pendaftaran gagal';
+    return back()->with('error', $errorMessage);
+}
+
 }

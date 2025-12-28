@@ -8,61 +8,57 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // REGISTER
+    
     public function register(Request $request)
     {
         $request->validate([
-            'username' => 'required|max:200',
-            'email' => 'required|email|max:200|unique:user_data',
-            'password' => 'required|max:50',
+            'username'      => 'required|max:200',
+            'email'     => 'required|email|max:200|unique:user_data',
+            'password'  => 'required|min:6|max:50',
             'user_type' => 'required|max:10',
         ]);
 
         $user = UserData::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'username'      => $request->username,
+            'email'     => $request->email,
+            'password'  => Hash::make($request->password),
             'user_type' => $request->user_type,
         ]);
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        // Simpan user ke session agar langsung login
+        session(['user' => $user]);
 
-        return response()->json([
-            'message' => 'Register successful',
-            'token' => $token,
-            'user' => $user
-        ], 201);
+        return redirect('/')->with('success', 'Register berhasil, selamat datang!');
     }
 
-    // LOGIN
+    
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+            'email'    => 'required|email',
+            'password' => 'required'
         ]);
 
         $user = UserData::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
+            return back()->withErrors([
+                'login' => 'Email atau password salah'
+            ]);
         }
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        // Simpan user ke session
+        session(['user' => $user]);
 
-        return response()->json([
-            'message' => 'Login successful',
-            'token' => $token,
-            'user' => $user
-        ]);
+        // Redirect ke homepage Blade
+        return redirect('/')->with('success', 'Login berhasil');
     }
 
-    // LOGOUT
-    public function logout(Request $request)
+  
+    public function logout()
     {
-        $request->user()->tokens()->delete();
+        session()->forget('user');
 
-        return response()->json(['message' => 'Logged out successfully']);
+        return redirect('/login')->with('success', 'Berhasil logout');
     }
 }
-
