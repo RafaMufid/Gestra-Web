@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\UserData;
 
@@ -13,85 +13,77 @@ class ProfileWebController extends Controller
     public function index()
     {
         $user = Session::get('user');
-
         if (!$user) {
-            return redirect('/login');
+            return redirect()->route('login');
         }
 
-        $photoUrl = null;
-        if (!empty($user['profile_photo_path'])) {
-            $photoUrl =
-                rtrim(config('filesystems.disks.azure.url'), '/') . '/' .
-                ltrim($user['profile_photo_path'], '/');
-        }
+        $photoUrl = $user['profile_photo_path']
+            ? rtrim(config('filesystems.disks.azure.url'), '/') . '/' . $user['profile_photo_path']
+            : asset('assets/default.png');
 
-        return view('profile.index', [
-            'user' => $user,
-            'photoUrl' => $photoUrl
-        ]);
+        return view('profile.index', compact('user', 'photoUrl'));
     }
 
     public function update(Request $request)
     {
-        $user = Session::get('user');
+        if (!$request->expectsJson()) {
+        return response()->json(['message' => 'Invalid request'], 400);
+    }
 
-        if (!$user) {
+        $sessionUser = Session::get('user');
+        if (!$sessionUser) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
-        if ($request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $filename = time() . '_' . $file->getClientOriginalName();
-
-            $userData = UserData::find($user['id']);
-
-            if ($userData->profile_photo_path) {
-                Storage::disk('azure')->delete($userData->profile_photo_path);
-            }
-
-            $path = Storage::disk('azure')->put('profile_photos', $file);
-
-            $userData->profile_photo_path = $path;
-            $userData->save();
-
-            $user['profile_photo_path'] = $path;
-            Session::put('user', $user);
-        }
-
-        $payload = [
-            'username' => $request->username,
-            'email' => $request->email,
-        ];
-
-        if ($request->filled('password')) {
-            $payload['password'] = $request->password;
-        }
-
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . ($user['token'] ?? ''),
-        ])->post('http://localhost:3000/api/users/profile/update', $payload);
-
-        if (!$response->successful()) {
-            return response()->json([
-                'message' => 'Gagal update profile',
-                'status' => $response->status(),
-                'body' => $response->json(),
-            ], 400);
-        }
-
-        $updatedUser = $response->json()['user'];
-
-        Session::put('user', [
-            'id' => $updatedUser['id'],
-            'username' => $updatedUser['username'],
-            'email' => $updatedUser['email'],
-            'profile_photo_path' => $user['profile_photo_path'] ?? null, 
-            'token' => $user['token'],
+        $request->validate([
+            'username' => 'required|string|max:255',
+            'email'    => 'required|email|max:255',
+            'password' => 'nullable|min:6',
+            'photo'    => 'nullable|image|max:2048',
         ]);
 
+        $user = UserData::find($sessionUser['id']);
+        if (!$user) {
+            return response()->json(['message' => 'User tidak ditemukan'], 404);
+        }
+
+        // Update text data
+        $user->username = $request->username;
+        $user->email    = $request->email;
+
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        // Upload foto ke Azure
+        if ($request->hasFile('photo')) {
+
+            // hapus foto lama
+            if ($user->profile_photo_path) {
+                Storage::disk('azure')->delete($user->profile_photo_path);
+            }
+
+            $path = $request->file('photo')
+                ->store('profile_photos', 'azure');
+
+            $user->profile_photo_path = $path;
+        }
+
+        $user->save();
+
+        // Update session
+        Session::put(
+    'user',
+    array_merge(Session::get('user'), [
+        'username' => $user->username,
+        'email' => $user->email,
+        'profile_photo_path' => $user->profile_photo_path,
+    ])
+);
+
         return response()->json([
-            'message' => 'Profile updated',
-            'user' => Session::get('user')
-        ], 200);
+            'message' => 'Profile berhasil diperbarui',
+            'user'    => Session::get('user')
+        ]);
     }
 }

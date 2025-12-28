@@ -50,6 +50,8 @@ Route::post('/community/{id}/like', [CommunityPostController::class, 'like'])->n
 
 Route::post('/community/{id}/comment', [CommunityPostController::class, 'comment'])->name('community.comment');
 
-Route::get('/profile', [ProfileWebController::class, 'index'])->name('profile');
-Route::get('/profile/edit', [ProfileWebController::class, 'edit'])->name('profile.edit');
-Route::post('/profile/update', [ProfileWebController::class, 'update'])->name('profile.update');
+Route::get('/profile', [ProfileWebController::class, 'index'])
+    ->name('profile');
+
+Route::post('/profile/update', [ProfileWebController::class, 'update'])
+    ->name('profile.update');
