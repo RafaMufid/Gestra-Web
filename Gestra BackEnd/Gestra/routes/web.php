@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthWebController;
+use App\Http\Controllers\CommunityPostController;
 use App\Http\Controllers\ProfileWebController;
-
 // HOME
 
 Route::get('/', function () {
@@ -36,6 +36,15 @@ Route::get('/register', function () {
 Route::post('/register', [AuthWebController::class, 'register'])
     ->name('register.post');
 
+Route::get('/community', [CommunityPostController::class, 'index'])->name('community.index');
+
+Route::post('/community', [CommunityPostController::class, 'store'])->name('community.store');
+
+Route::get('/community/all', [CommunityPostController::class, 'allPosts'])->name('community.all');
+
+Route::post('/community/{id}/like', [CommunityPostController::class, 'like'])->name('community.like');
+
+Route::post('/community/{id}/comment', [CommunityPostController::class, 'comment'])->name('community.comment');
 
 Route::get('/profile', [ProfileWebController::class, 'index'])->name('profile');
 Route::get('/profile/edit', [ProfileWebController::class, 'edit'])->name('profile.edit');
