@@ -70,29 +70,31 @@ body{
 
 .popup-content {
     background-color: white;
-    padding: 30px;
+    padding: 65px;
     border-radius: 20px;
     text-align: center;
     width: 80%;
-    max-width: 500px;
+    max-width: 750px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
-
+ 
 #close-popup{
     background-color: #ad3a3a;
     color: white;
-    border-radius: 16px;
+    border-radius: 12px;
     border: none;
-    padding: 10px;
-    margin-top: 15px;
+    padding: 12px 15px;
+    margin-top: 23px;
+    font-size: 16px;
 }
 
 .stt-controls button {
     margin: 10px;
-    padding: 10px 20px;
-    border-radius: 30px;
+    padding: 13px 23px;
+    border-radius: 35px;
     background-color: #1E40AF;
     color: white;
+    font-size: 16px;
     border: none;
     cursor: pointer;
     transition: 0.3s ease;
@@ -108,8 +110,8 @@ body{
     border-radius: 10px;
     padding: 10px 13px;
     border: 2px solid #1E40AF;
-    width: 60%;  
-    max-height: 100px; 
+    width: 80%;  
+    max-height: 120px; 
     overflow-y: auto; 
     margin-left: auto;
     margin-right: auto;
@@ -117,13 +119,13 @@ body{
     white-space: pre-wrap;
     text-align: left; 
     line-height: 1.5;
-    font-size: 14px;
+    font-size: 16px;
     color: #111827;
 }
 
-#stt-status {
-    margin-bottom: 8px;
+#stt-status { 
+    margin-bottom: 10px;
     color: #1E40AF;
-    font-weight: 450;
-    margin-top: 10px;
+    font-weight: 550;
+    margin-top: 15px;
 }
