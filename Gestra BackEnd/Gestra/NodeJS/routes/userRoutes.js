@@ -14,8 +14,5 @@ router.get('/', (req, res) => {
 router.post('/register', controller.register);
 router.post('/login', controller.login);
 
-router.post('/profile/update', auth, controller.updateProfile);
-router.post('/profile/photo', auth, controller.updatePhoto);
-
 module.exports = router;
 
