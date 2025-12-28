@@ -16,9 +16,18 @@ class AuthWebController extends Controller
         ]);
 
         if ($response->successful()) {
-            Session::put('user', $response->json()['user']);
-            return redirect('/home-after-login');
-        }
+    $data = $response->json();
+
+    Session::put('user', [
+        'id' => $data['user']['id'],
+        'username' => $data['user']['username'],
+        'email' => $data['user']['email'],
+        'profile_photo_path' => $data['user']['profile_photo_path'] ?? null,
+        'token' => $data['token'],
+    ]);
+
+    return redirect('/home-after-login');
+}
 
         return back()->with('error', 'Login gagal');
     }

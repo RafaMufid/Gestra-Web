@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthWebController;
+use App\Http\Controllers\ProfileWebController;
 
 // HOME
 
@@ -39,3 +40,7 @@ Route::post('/register', [AuthWebController::class, 'register'])
 Route::get('/gestur', function () {
     return view('gestur');
 })->name('gestur');
+
+Route::get('/profile', [ProfileWebController::class, 'index'])->name('profile');
+Route::get('/profile/edit', [ProfileWebController::class, 'edit'])->name('profile.edit');
+Route::post('/profile/update', [ProfileWebController::class, 'update'])->name('profile.update');

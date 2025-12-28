@@ -15,3 +15,34 @@ exports.createUser = async (user) => {
     [username, email, password, profile_photo_path]
   );
 };
+
+exports.findById = async (id) => {
+  const [rows] = await db.query(
+    'SELECT * FROM user_data WHERE id = ?',
+    [id]
+  );
+  return rows[0];
+};
+
+exports.updateUser = async (id, data) => {
+  const fields = [];
+  const values = [];
+
+  for (const key in data) {
+    fields.push(`${key} = ?`);
+    values.push(data[key]);
+  }
+
+  values.push(id);
+
+  const sql = `UPDATE user_data SET ${fields.join(', ')} WHERE id = ?`;
+  await db.query(sql, values);
+};
+
+exports.findById = async (id) => {
+  const [rows] = await db.query(
+    'SELECT * FROM user_data WHERE id = ?',
+    [id]
+  );
+  return rows[0];
+};
