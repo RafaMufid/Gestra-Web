@@ -23,3 +23,4 @@ Route::get('/logout', [AuthWebController::class, 'logout'])
 Route::get('/home-after-login', function () {
     return view('home_after_login');
 })->name('user.home');
+
