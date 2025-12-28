@@ -34,3 +34,8 @@ Route::get('/register', function () {
 // Proses register
 Route::post('/register', [AuthWebController::class, 'register'])
     ->name('register.post');
+
+// GESTUR
+Route::get('/gestur', function () {
+    return view('gestur');
+})->name('gestur');
