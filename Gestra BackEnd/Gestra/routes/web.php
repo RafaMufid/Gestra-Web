@@ -36,6 +36,10 @@ Route::get('/register', function () {
 Route::post('/register', [AuthWebController::class, 'register'])
     ->name('register.post');
 
+// GESTUR
+Route::get('/gestur', function () {
+    return view('gestur');
+})->name('gestur');
 
 Route::get('/profile', [ProfileWebController::class, 'index'])->name('profile');
 Route::get('/profile/edit', [ProfileWebController::class, 'edit'])->name('profile.edit');

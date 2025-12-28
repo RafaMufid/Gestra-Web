@@ -52,7 +52,7 @@
                 <img src="{{ asset('assets/Sibi.png') }}" alt="">
                 <h2>
                     Gesture detection menggunakan bahasa isyarat SIBI <br>
-                    <a href="#"><button>Coba</button></a>
+                    <a href="{{ route('gestur') }}"><button>Coba</button></a>
                 </h2>
             </div>
 
