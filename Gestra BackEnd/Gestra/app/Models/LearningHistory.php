@@ -13,6 +13,7 @@ class LearningHistory extends Model
         'user_id',
         'gesture_name',
         'accuracy',
+        'source',
     ];
 
     public function user()
