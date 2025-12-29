@@ -55,3 +55,5 @@ Route::get('/profile', [ProfileWebController::class, 'index'])
 
 Route::post('/profile/update', [ProfileWebController::class, 'update'])
     ->name('profile.update');
+
+Route::post('/speech', [SpeechController::class, 'store']);
