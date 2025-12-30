@@ -14,6 +14,7 @@ class HistoryController extends Controller
         $request->validate([
             'gesture_name' => 'required|string', // Contoh: "SAYA MAKAN"
             'accuracy' => 'required|numeric',    // Contoh: 1.0
+            'source' => 'required|in:camera,speech',
         ]);
 
         $user = $request->user(); // Ambil user yang sedang login
@@ -23,6 +24,7 @@ class HistoryController extends Controller
             'user_id' => $user->id,
             'gesture_name' => $request->gesture_name,
             'accuracy' => $request->accuracy,
+            'source' => $request->source,
         ]);
 
         // 3. Beri balasan ke Flutter bahwa "Sukses" (Kode 201)
