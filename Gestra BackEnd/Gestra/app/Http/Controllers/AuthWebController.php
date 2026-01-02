@@ -55,7 +55,6 @@ class AuthWebController extends Controller
     ]);
 
     if ($response->successful()) {
-        // Bisa langsung login otomatis atau redirect ke login page
         return redirect('/login')->with('success', 'Akun berhasil dibuat, silakan login!');
     }
 

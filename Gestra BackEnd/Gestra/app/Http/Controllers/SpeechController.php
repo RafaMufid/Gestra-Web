@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class SpeechController extends Controller
 {
-    // Pastikan route ini menggunakan middleware 'auth:sanctum' atau 'auth:api'
     public function store(Request $request)
     {
         // Validasi input
@@ -16,12 +15,11 @@ class SpeechController extends Controller
             'duration' => 'required|integer',
         ]);
 
-        // Ambil user yang sedang login
         $user = $request->user(); 
 
         // Insert ke database
         $speech = Speech::create([
-            'user_id' => $user->id,       // wajib karena kolom NOT NULL
+            'user_id' => $user->id,       
             'text' => $validated['text'],
             'duration' => $validated['duration'],
         ]);
