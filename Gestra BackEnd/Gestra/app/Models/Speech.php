@@ -5,19 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LearningHistory extends Model
+class Speech extends Model
 {
     use HasFactory;
 
+    protected $table = 'speech_results';
+
     protected $fillable = [
         'user_id',
-        'gesture_name',
-        'accuracy',
-        'source',
+        'text',
+        'duration',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(UserData::class, 'user_id');
-    }
 }
