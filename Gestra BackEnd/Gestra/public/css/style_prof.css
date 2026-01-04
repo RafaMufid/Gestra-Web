@@ -11,8 +11,9 @@ body {
 .main {
     display: flex;
     justify-content: center;
+    background: linear-gradient(to bottom right, #ffeaa7, #ffffff);
+    padding: 60px 0;
 }
-
 
 .nav {
     height: 80px;
@@ -57,7 +58,7 @@ body {
     border-radius: 50%;
     border: 2px solid #2f80ed;
     overflow: hidden;
-    margin: 20px auto 5px ;
+    margin: 20px auto 5px;
     position: relative;
 }
 
@@ -80,7 +81,7 @@ body {
 }
 
 .hidden {
-    display: none ;
+    display: none;
 }
 
 
@@ -116,6 +117,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    background-color: #ffffff;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+
+    padding: 45px 55px;
+
+    width: 400px;
+    box-sizing: content-box;
 }
 
 .profile_info {
