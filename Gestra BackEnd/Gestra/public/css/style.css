@@ -96,7 +96,7 @@ body{
     }
 }
 .main{
-    background-image: url(assets/bg.svg), radial-gradient(circle at center, #fffdf3 0%, #f7e49a 60%, #ffffff 100%);
+    background-image: url("/assets/bg.svg"), radial-gradient(circle at center, #fffdf3 0%, #f7e49a 60%, #ffffff 100%);
     background-size: 8%;
 }
 .intro{
@@ -116,26 +116,27 @@ body{
 }
 
 .konten .item{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    display: flex;
     gap: 30px;
     margin-top: 30px;
+    margin-bottom: 30px;
     width: 100%;
     max-width: 1200px;
+    justify-content: center;
 }
 
 .gesture, .tts, .ttg, .forum{
     height: 250px;
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
     display: flex;
-    border: 5px;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    border: 5px solid black;
     border-radius: 20px;
-    border-style: solid;
     transition: transform 0.4s ease;
     transform-style: preserve-3d;
-    &:hover{
-        transform: rotateX(20deg);
-    }
 }
 .gesture h2, img{
     text-align: center;
@@ -209,7 +210,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 0 80px;
+    padding: 20px 0 80px;
 }
 
 .profil h1{

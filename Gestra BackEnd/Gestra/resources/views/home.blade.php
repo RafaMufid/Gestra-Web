@@ -17,8 +17,8 @@
     <div class="list">
         <ul>
             <li><a href="{{ url('/') }}">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#profil">About</a></li>
+            <li><a href="#kontak">Contact</a></li>
         </ul>
     </div>
     <div class="akun">
@@ -76,7 +76,7 @@
         </div>
     </div>
 
-    <div class="profil">
+    <div class="profil" id="profil">
         <h1 style="justify-self: center; margin-top: 50px;">Meet Our Team😁</h1>
 
         <div id="image-track">
@@ -118,7 +118,7 @@
     </div>
 </div>
 
-<div class="kontak">
+<div class="kontak" id="kontak">
     <div class="footer-content">
         <p>© 2025 Gestra. All rights reserved.</p>
         <div class="social-links">
