@@ -30,10 +30,9 @@ Route::get('/speech-to-text', function () {
 })->name('stt');
 
 Route::get('/register', function () {
-    return view('register'); // file blade: resources/views/register.blade.php
+    return view('register'); 
 })->name('register');
 
-// Proses register
 Route::post('/register', [AuthWebController::class, 'register'])
     ->name('register.post');
 
