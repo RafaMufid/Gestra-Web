@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthWebController;
 use App\Http\Controllers\CommunityPostController;
 use App\Http\Controllers\ProfileWebController;
+use App\Http\Controllers\SpeechController;
 // HOME
 
 Route::get('/', function () {

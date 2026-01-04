@@ -130,6 +130,53 @@ body {
 .btn_control.stop:hover {
     background-color: rgb(200, 0, 0);
 }
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn:active {
+    transform: scale(0.95);
+    box-shadow: none;
+}
+
+.btn-spasi {
+    background-color: #1E40AF;
+    color: white;
+}
+
+.btn-spasi:hover {
+    background-color: #153084;
+    box-shadow: 0 4px 8px rgba(30, 64, 175, 0.3);
+}
+
+.btn-hapus {
+    background-color: #ef4444;
+    color: white;
+}
+
+.btn-hapus:hover {
+    background-color: #dc2626;
+    box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+}
+
+.btn-reset {
+    background-color: #f59e0b;
+    color: white;
+}
+
+.btn-reset:hover {
+    background-color: #d97706;
+    box-shadow: 0 4px 8px rgba(245, 158, 11, 0.3);
+}
+
 /* Video end */
 
 /* Result */
@@ -189,6 +236,8 @@ body {
 
 .social-links {
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 20px;
 }
 
