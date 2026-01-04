@@ -17,7 +17,7 @@
             <img src="{{ asset('assets/gestra.png') }}" alt="Gestra Logo">
         </div>
         <div class="list_profile">
-            <button onclick="window.location.href='{{ url('/') }}'">Home</button>
+            <button onclick="window.location.href='{{ route('user.home') }}'">Home</button>
         </div>
     </div>
 
@@ -34,7 +34,7 @@
                     <video id="videoFeed" playsinline muted
                         style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
                     </video>
-                    <canvas id="detectionCanvas" 
+                    <canvas id="detectionCanvas"
                         style="width: 100%; height: 100%; border-radius: 10px; display: none; background-color: #000;">
                     </canvas>
                 </div>
@@ -46,34 +46,17 @@
 
             <div class="result_display">
                 <h2>Hasil Terjemahan: </h2>
-                
-                <div class="result_screen" id="resultScreen" style="min-height: 100px; display: flex; align-items: center; justify-content: center;">
-                    <p class="placeholder" id="textResult" style="font-size: 3rem; word-wrap: break-word; width: 100%;">...</p>
+
+                <div class="result_screen" id="resultScreen" style="min-height: 100px; display: flex; border: 1px solid #ccc; border-radius: 4px; padding: 10px;">
+                    <p class="placeholder" id="textResult" style="font-size: 2rem; word-wrap: break-word; width: 100%;">...</p>
                 </div>
-                
-                <p id="confidenceScore" style="text-align: center; color: gray; margin-top: 5px;">-</p>
+
+                <p id="confidenceScore" style="text-align: center; color: green; margin-top: 5px;">-</p>
 
                 <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
-                    <button id="spaceBtn" class="btn btn-primary">Spasi</button>
-                    <button id="delBtn" class="btn btn-danger">Hapus</button>
-                    <button id="clearBtn" class="btn btn-warning">Reset</button>
-                </div>
-            </div>
-            <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px; width: 100%; max-width: 640px;">
-                <h4>Kalimat Terbentuk:</h4>
-                <div id="sentenceDisplay" style="
-                    font-size: 1.5rem; 
-                    font-weight: bold; 
-                    min-height: 50px; 
-                    border-bottom: 2px solid #007bff; 
-                    margin-bottom: 10px;
-                    color: #333;">
-                </div>
-
-                <div style="display: flex; gap: 10px; justify-content: center;">
-                    <button id="spaceBtn" class="btn btn-primary" style="padding: 10px 20px;">Spasi</button>
-                    <button id="delBtn" class="btn btn-danger" style="padding: 10px 20px;">Hapus Huruf</button>
-                    <button id="clearBtn" class="btn btn-warning" style="padding: 10px 20px;">Reset Semua</button>
+                    <button id="spaceBtn" class="btn btn-spasi">Spasi</button>
+                    <button id="delBtn" class="btn btn-hapus">Hapus</button>
+                    <button id="clearBtn" class="btn btn-reset">Reset</button>
                 </div>
             </div>
         </div>

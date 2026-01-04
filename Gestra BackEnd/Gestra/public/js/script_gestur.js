@@ -2,14 +2,12 @@ const video = document.getElementById('videoFeed');
 const canvas = document.getElementById('detectionCanvas');
 const ctx = canvas.getContext('2d');
 
-// UI Elements
 const startBtn = document.getElementById('startBtn');
 const stopBtn = document.getElementById('stopBtn');
 const placeholder = document.getElementById('cameraPlaceholder');
-const textResult = document.getElementById('textResult'); // INI SEKARANG JADI KALIMAT
+const textResult = document.getElementById('textResult');
 const confidenceScore = document.getElementById('confidenceScore');
 
-// Tombol Kontrol
 const spaceBtn = document.getElementById('spaceBtn');
 const delBtn = document.getElementById('delBtn');
 const clearBtn = document.getElementById('clearBtn');
@@ -19,7 +17,6 @@ let isDetecting = false;
 let isInferencing = false;
 let renderId;
 
-// Variabel Logika
 let currentSentence = "";     
 let detectedChar = "-";       
 let stableChar = "";          
@@ -27,20 +24,16 @@ let startTime = 0;
 const HOLD_DURATION = 2000;   
 let lastScore = 0;
 
-// Label
 const classNames = [
     "A", "B", "C", "D", "E", "F", "G", "H", "I", 
     "K", "L", "M", "N", "O", "P", "Q", "R", "S", 
     "T", "U", "V", "W", "X", "Y"
 ];
 
-// --- 1. SETUP KONTROL KALIMAT ---
-// Update tampilan kalimat
+// SETUP KONTROL KALIMAT
 function renderSentence() {
-    // Tampilkan kalimat + kursor berkedip '|'
     textResult.innerText = currentSentence + (isDetecting ? "|" : "");
     
-    // Ubah warna jadi hitam (normal)
     textResult.style.color = "#333";
     textResult.classList.remove('placeholder');
 }
@@ -60,11 +53,11 @@ clearBtn.addEventListener('click', () => {
     renderSentence();
 });
 
-// --- 2. LOAD MODEL ---
+// LOAD MODEL
 startBtn.disabled = true;
 async function loadModel() {
     try {
-        textResult.innerText = "Memuat AI...";
+        textResult.innerText = "Memuat Model...";
         tfliteModel = await tflite.loadTFLiteModel('/models/model_sibi.tflite');
         console.log("Model Loaded!");
         textResult.innerText = "Siap. Tekan Mulai.";
@@ -76,7 +69,7 @@ async function loadModel() {
 }
 loadModel();
 
-// --- 3. START/STOP ---
+// START BUTTON
 startBtn.addEventListener('click', async () => {
     try {
         startBtn.disabled = true;
@@ -99,7 +92,7 @@ startBtn.addEventListener('click', async () => {
             canvas.height = video.videoHeight;
 
             isDetecting = true;
-            renderSentence(); // Tampilkan kursor
+            renderSentence();
             renderLoop();
             inferenceLoop();
         };
@@ -109,6 +102,7 @@ startBtn.addEventListener('click', async () => {
     }
 });
 
+// STOP BUTTON
 stopBtn.addEventListener('click', () => {
     isDetecting = false;
     cancelAnimationFrame(renderId);
@@ -116,23 +110,28 @@ stopBtn.addEventListener('click', () => {
     video.srcObject = null;
     
     canvas.style.display = 'none';
-    placeholder.style.display = 'flex';
+    placeholder.style.display = 'block';
     startBtn.disabled = false;
     stopBtn.disabled = true;
     
-    textResult.innerText = currentSentence; // Hilangkan kursor saat stop
+    if (currentSentence.trim() === "") {
+        textResult.innerText = "Siap. Tekan Mulai.";
+        textResult.classList.add('placeholder');
+    } else {
+        textResult.innerText = currentSentence;
+    }
     confidenceScore.innerText = "-";
 });
 
-// --- 4. RENDER LOOP ---
+// RENDER LOOP
 function renderLoop() {
     if (!isDetecting) return;
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    drawOverlay(); // Gambar kotak hijau di video
+    drawOverlay();
     renderId = requestAnimationFrame(renderLoop);
 }
 
-// --- 5. INFERENCE LOOP ---
+// INFERENCE LOOP 
 async function inferenceLoop() {
     if (!isDetecting) return;
     if (isInferencing) { setTimeout(inferenceLoop, 100); return; }
@@ -144,7 +143,7 @@ async function inferenceLoop() {
     if (isDetecting) requestAnimationFrame(inferenceLoop);
 }
 
-// --- 6. LOGIKA AI ---
+// LOGIKA ML
 async function runInference() {
     const inputTensor = tf.tidy(() => {
         const raw = tf.browser.fromPixels(video);
@@ -172,20 +171,16 @@ async function runInference() {
             const char = classNames[maxIndex];
             detectedChar = char;
 
-            // Logika Timer
+            // Timer
             if (char === stableChar) {
                 const timePassed = Date.now() - startTime;
                 if (timePassed > HOLD_DURATION) {
-                    // --- BERHASIL TERKUNCI ---
-                    currentSentence += char; // Tambah ke kalimat utama
-                    renderSentence();        // Update layar utama
+                    currentSentence += char;
+                    renderSentence();
                     
                     // Efek Reset
                     startTime = Date.now(); 
                     stableChar = ""; 
-                    
-                    // Opsional: Getar jika di HP
-                    if (navigator.vibrate) navigator.vibrate(200);
                 }
             } else {
                 stableChar = char;
@@ -203,9 +198,9 @@ async function runInference() {
     }
 }
 
-// --- 7. OVERLAY VIDEO (PREVIEW) ---
+// OVERLAY PREVIEW VIDEO
 function drawOverlay() {
-    // 1. Tampilkan Akurasi Real-time
+    // Tampilkan Akurasi Real-time
     if (lastScore > 0.4 && detectedChar !== "?") {
         confidenceScore.innerText = `Terdeteksi: ${detectedChar} (${(lastScore * 100).toFixed(0)}%)`;
 
@@ -213,7 +208,7 @@ function drawOverlay() {
         ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
         ctx.fillRect(10, 10, 220, 120);
 
-        // Huruf Preview (Besar di Video)
+        // Huruf Preview
         ctx.fillStyle = "#00FF00";
         ctx.font = "bold 60px Arial";
         ctx.fillText(detectedChar, 30, 80);
@@ -227,11 +222,11 @@ function drawOverlay() {
             ctx.fillStyle = "#fff";
             ctx.fillRect(20, 95, 200, 10);
             
-            // Bar Isi (Loading)
+            // Bar Progress
             ctx.fillStyle = "#00FF00";
             ctx.fillRect(20, 95, 200 * progress, 10);
             
-            // Teks Info
+            // Teks
             ctx.fillStyle = "#fff";
             ctx.font = "16px Arial";
             ctx.fillText("Tahan posisi...", 20, 125);
