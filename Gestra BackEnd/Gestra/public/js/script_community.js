@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // === 1. EFEK VISUAL ASLI (HOVER CARD) ===
     const communityPosts = document.querySelectorAll('.community-posts');
     communityPosts.forEach(post => {
         post.addEventListener('mouseover', function() {
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // === 2. LOGIKA POSTING CERITA (LARAVEL) ===
     const postBtn = document.getElementById('post-btn');
     if (postBtn) {
         postBtn.addEventListener('click', function() {
@@ -45,21 +43,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // === 3. LOGIKA LIKE (GABUNGAN VISUAL + BACKEND) ===
-    // Menggunakan Event Delegation agar tombol baru tetap bisa diklik
+    //like
     document.body.addEventListener('click', function(e) {
         if (e.target.classList.contains('like-btn')) {
             const button = e.target;
             const postId = button.getAttribute('data-id');
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-            // Efek Visual Langsung (Agar terasa cepat)
             button.classList.toggle('liked');
             if (button.classList.contains('liked')) {
                 button.innerText = 'Liked';
             }
 
-            // Kirim ke Backend
             fetch(`/community/${postId}/like`, {
                 method: 'POST',
                 headers: {
@@ -70,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(res => res.json())
             .then(data => {
                 if(data.success) {
-                    // Update teks dengan jumlah like terbaru dari server
                     button.innerText = `Like (${data.likes})`;
                     if(button.classList.contains('liked')) {
                          button.innerText = `Liked (${data.likes})`;
@@ -80,14 +74,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // === 4. TOGGLE KOMENTAR ===
     document.body.addEventListener('click', function(e) {
         if (e.target.classList.contains('comment-toggle-btn')) {
             const btn = e.target;
             const postId = btn.getAttribute('data-id');
             const commentBox = document.getElementById(`comment-box-${postId}`);
             
-            // Toggle class active (sesuai CSS tambahan)
             commentBox.classList.toggle('active');
         }
     });

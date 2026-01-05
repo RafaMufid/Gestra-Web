@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthWebController;
 use App\Http\Controllers\CommunityPostController;
 use App\Http\Controllers\ProfileWebController;
+use App\Http\Controllers\SpeechController;
 // HOME
 
 Route::get('/', function () {
@@ -29,10 +30,9 @@ Route::get('/speech-to-text', function () {
 })->name('stt');
 
 Route::get('/register', function () {
-    return view('register'); // file blade: resources/views/register.blade.php
+    return view('register'); 
 })->name('register');
 
-// Proses register
 Route::post('/register', [AuthWebController::class, 'register'])
     ->name('register.post');
 

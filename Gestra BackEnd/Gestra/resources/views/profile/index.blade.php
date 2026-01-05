@@ -31,23 +31,22 @@
         </div>
 
         <form class="profile_info" id="profileForm" enctype="multipart/form-data">
-    @csrf
+        @csrf
 
-    <input type="file" name="photo" id="photoInput" accept="image/*" hidden>
+            <input type="file" name="photo" id="photoInput" accept="image/*" hidden>
 
-    <label>Username</label>
-    <input type="text" name="username" value="{{ $user['username'] }}" disabled>
+            <label>Username</label>
+            <input type="text" name="username" value="{{ $user['username'] }}" disabled>
 
-    <label>Email</label>
-    <input type="text" name="email" value="{{ $user['email'] }}" disabled>
+            <label>Email</label>
+            <input type="text" name="email" value="{{ $user['email'] }}" disabled>
 
-    <div class="password_field hidden">
-        <label>Password</label>
-        <input type="text" name="password" placeholder="Masukkan password baru">
-    </div>
-</form>
-
-
+            <div class="password_field hidden">
+             <label>Password</label>
+                <input type="text" name="password" placeholder="Masukkan password baru">
+            </div>
+        </form>
+        
         <div class="profile_actions">
             <button type="button" class="btnedit" id="editBtn">Edit Profile</button>
             <button type="button" class="btnedit hidden" id="saveBtn">Save</button>
